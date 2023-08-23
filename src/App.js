@@ -1,11 +1,12 @@
 import { StatusBar } from 'expo-status-bar';
-import { Button, StyleSheet, Text, View } from 'react-native';
+import { StyleSheet, Text, View } from 'react-native';
+import Button from './components/Button.tsx';
+import Calculator from './components/Calculator.tsx';
 
 export default function App() {
   return (
     <View style={styles.container}>
-      <Text>RN Calc App</Text>
-      <StatusBar style="auto" />
+      <Calculator />
     </View>
   );
 }
@@ -13,8 +14,16 @@ export default function App() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#fff',
+    backgroundColor: 'black',
     alignItems: 'center',
     justifyContent: 'center',
+  },
+  text: {
+    fontSize: 30,
+    fontWeight: '700',
+    color: 'green',
+  },
+  error: {
+    color: 'red',
   },
 });
