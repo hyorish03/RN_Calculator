@@ -41,18 +41,15 @@ function NumberBtn() {
 export const btnStyles = StyleSheet.create({
   numBtnColumn: {
     flexDirection: 'column',
-    backgroundColor: 'black',
   },
   numBtnRow: {
     flexDirection: 'row',
     margin: 10,
     justifyContent: 'space-between',
-    backgroundColor: 'white',
   },
   numBtnBottom: {
     flexDirection: 'row',
     justifyContent: 'space-between',
-    backgroundColor: 'gray',
   },
 });
 

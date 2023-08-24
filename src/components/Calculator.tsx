@@ -12,7 +12,6 @@ function Calculator() {
         <Text style={styles.result}>{result}</Text>
       </View>
       <View style={styles.btnContainer}>
-        {/* <NumberBtn /> */}
         <View style={btnStyles.numBtnColumn}>
           <View style={btnStyles.numBtnRow}>
             <StyledButton title="AC" />
@@ -50,7 +49,6 @@ function Calculator() {
 }
 const styles = StyleSheet.create({
   result: {
-    backgroundColor: 'pink',
     color: 'black',
     fontSize: 60,
     textAlign: 'right',
@@ -58,20 +56,17 @@ const styles = StyleSheet.create({
   resultView: {
     width: '100%',
     height: '30%',
-    backgroundColor: 'white',
     justifyContent: 'flex-end',
   },
   container: {
     flex: 1,
     width: '100%',
-    backgroundColor: 'blue',
     justifyContent: 'flex-start',
   },
   btnContainer: {
     width: '100%',
     height: '70%',
     padding: 10,
-    backgroundColor: 'yellow',
     justifyContent: 'flex-end',
   },
 });
