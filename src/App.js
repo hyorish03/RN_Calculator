@@ -1,12 +1,28 @@
 import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, Text, View } from 'react-native';
-import Button from './components/Button.tsx';
-import Calculator from './components/Calculator.tsx';
+import Button, { ButtonType } from './components/Button.tsx';
 
 export default function App() {
   return (
     <View style={styles.container}>
-      <Calculator />
+      <Button
+        title="1"
+        onPress={() => {}}
+        buttonStyle={{ width: 100, height: 100 }}
+        buttonType={ButtonType.Number}
+      />
+      <Button
+        title="0"
+        onPress={() => {}}
+        buttonStyle={{ width: 200, height: 100 }}
+        buttonType={ButtonType.Number}
+      />
+      <Button
+        title="="
+        onPress={() => {}}
+        buttonStyle={{ width: 100, height: 100 }}
+        // buttonType={ButtonType.Operator}
+      />
     </View>
   );
 }

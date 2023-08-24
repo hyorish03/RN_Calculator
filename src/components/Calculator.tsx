@@ -1,6 +1,6 @@
 import React from 'react';
 import { Button, StyleSheet, Text, View } from 'react-native';
-import StyledButton from './Button';
+import StyledButton from './StyledButton';
 import NumberBtn, { btnStyles } from './NumberBtn';
 
 function Calculator() {

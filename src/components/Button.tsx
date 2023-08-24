@@ -1,29 +1,51 @@
-import { View, Text, StyleSheet } from 'react-native';
+import React from 'react';
+import { Pressable, StyleSheet, Text } from 'react-native';
 
-interface ButtonProps {
-  title: string;
+export enum ButtonType {
+  NUMBER = 'NUMBER',
+  OPERATOR = 'OPERATOR',
 }
 
-const StyledButton = ({ title }: ButtonProps) => {
-  return (
-    <View style={styles.btn}>
-      <Text style={styles.text}>{title}</Text>
-    </View>
-  );
+type ButtonProps = {
+  title: string;
+  onPress: () => void;
+  buttonStyle?: object;
+  buttonType: ButtonType;
 };
 
+const Colors = {
+  NUMBER: ['#71717a', '#3f3f46'],
+  OPERATOR: ['#f59e0b', '#b45309'],
+};
+
+function Button({ title, onPress, buttonStyle, buttonType }: ButtonProps) {
+  return (
+    <Pressable
+      onPress={onPress}
+      style={({ pressed }) => {
+        return [
+          styles.button,
+          {
+            backgroundColor: Colors[buttonType][pressed ? 1 : 0],
+          },
+          buttonStyle,
+        ];
+      }}
+    >
+      <Text style={styles.title}>{title}</Text>
+    </Pressable>
+  );
+}
+
 const styles = StyleSheet.create({
-  btn: {
-    width: 80,
-    height: 80,
-    borderRadius: 50,
-    justifyContent: 'center',
+  button: {
     alignItems: 'center',
+    justifyContent: 'center',
   },
-  text: {
+  title: {
     fontSize: 50,
-    textAlign: 'center',
+    color: 'white',
   },
 });
 
-export default StyledButton;
+export default Button;
