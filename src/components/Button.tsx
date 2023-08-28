@@ -6,12 +6,12 @@ export enum ButtonType {
   OPERATOR = 'OPERATOR',
 }
 
-type ButtonProps = {
+interface ButtonProps {
   title: string;
   onPress: () => void;
-  buttonStyle?: object;
+  buttonStyle: object;
   buttonType: ButtonType;
-};
+}
 
 const Colors = {
   NUMBER: ['#71717a', '#3f3f46'],
@@ -22,15 +22,14 @@ function Button({ title, onPress, buttonStyle, buttonType }: ButtonProps) {
   return (
     <Pressable
       onPress={onPress}
-      style={({ pressed }) => {
-        return [
-          styles.button,
-          {
-            backgroundColor: Colors[buttonType][pressed ? 1 : 0],
-          },
-          buttonStyle,
-        ];
-      }}
+      style={({ pressed }) => [
+        styles.button,
+        {
+          backgroundColor: Colors[buttonType][0],
+        },
+        pressed && { backgroundColor: Colors[buttonType][1] },
+        buttonStyle,
+      ]}
     >
       <Text style={styles.title}>{title}</Text>
     </Pressable>
