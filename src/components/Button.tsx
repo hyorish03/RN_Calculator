@@ -1,7 +1,7 @@
 import React from 'react';
 import { Pressable, StyleSheet, Text } from 'react-native';
 
-export enum ButtonType {
+export enum ButtonType { 
   NUMBER = 'NUMBER',
   OPERATOR = 'OPERATOR',
 }
