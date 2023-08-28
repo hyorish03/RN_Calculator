@@ -12,14 +12,41 @@ enum Operators {
 
 export default function App() {
   const [result, setResult] = useState(0);
+  const [formular, setFormular] = useState([]);
   // 현재 기기의 높이와 너비를 구하는 Hook
   const { height, width } = useWindowDimensions();
+
   const buttonWidth = (width - 5) / 4;
 
   const onPressNumber = (num: number) => {
-    setResult((prev) => prev * 10 + num);
-  };
+    const last = formular[formular.length - 1];
 
+    if (isNaN(last)) {
+      setResult(num);
+      setFormular((prev) => [...prev, num]);
+    } else {
+      const newNumber = (last ?? 0) * 10 + num;
+      setResult(newNumber);
+      setFormular((prev) => {
+        prev.pop();
+        return [...prev, newNumber];
+      });
+    }
+  };
+  const onPressOperator = (operator) => {
+    switch (operator) {
+      case Operators.CLEAR:
+        setResult(0);
+        setFormular([]);
+        break;
+      case Operators.PLUS:
+        break;
+      case Operators.MINUS:
+        break;
+      case Operators.EQUAL:
+        break;
+    }
+  };
   return (
     <View style={styles.container}>
       <StatusBar />
@@ -63,7 +90,9 @@ export default function App() {
             />
             <Button
               title={Operators.EQUAL}
-              onPress={() => {}}
+              onPress={() => {
+                onPressOperator(Operators.EQUAL);
+              }}
               buttonStyle={{
                 width: buttonWidth,
                 height: buttonWidth,
@@ -77,7 +106,7 @@ export default function App() {
           <Button
             title={Operators.CLEAR}
             onPress={() => {
-              setResult(0);
+              onPressOperator(Operators.CLEAR);
             }}
             buttonStyle={{
               width: buttonWidth,
@@ -88,7 +117,9 @@ export default function App() {
           />
           <Button
             title={Operators.MINUS}
-            onPress={() => {}}
+            onPress={() => {
+              onPressOperator(Operators.MINUS);
+            }}
             buttonStyle={{
               width: buttonWidth,
               height: buttonWidth,
@@ -98,7 +129,9 @@ export default function App() {
           />
           <Button
             title={Operators.PLUS}
-            onPress={() => {}}
+            onPress={() => {
+              onPressOperator(Operators.PLUS);
+            }}
             buttonStyle={{
               width: buttonWidth,
               height: buttonWidth * 2,
