@@ -17,10 +17,27 @@ export default function App() {
   const { height, width } = useWindowDimensions();
 
   const buttonWidth = (width - 5) / 4;
+  console.log(formular);
+
+  const calculate = () => {
+    let calNum = 0;
+    let operator = '';
+
+    formular.forEach((value) => {
+      if ([Operators.MINUS, Operators.PLUS].includes(value)) operator = value;
+      else {
+        // calNum = value;
+        if (operator === Operators.PLUS) calNum += value;
+        else if (operator === Operators.MINUS) calNum -= value;
+        else calNum = value;
+      }
+      setResult(calNum);
+      setFormular([]);
+    });
+  };
 
   const onPressNumber = (num: number) => {
     const last = formular[formular.length - 1];
-
     if (isNaN(last)) {
       setResult(num);
       setFormular((prev) => [...prev, num]);
@@ -33,18 +50,25 @@ export default function App() {
       });
     }
   };
+
   const onPressOperator = (operator) => {
     switch (operator) {
       case Operators.CLEAR:
         setResult(0);
         setFormular([]);
         break;
-      case Operators.PLUS:
-        break;
-      case Operators.MINUS:
-        break;
       case Operators.EQUAL:
+        calculate();
         break;
+
+      default:
+        const last = formular[formular.length - 1];
+        console.log(last);
+        if ((Operators.PLUS, Operators.MINUS).includes(last))
+          console.log(operator);
+        setFormular((prev) => {
+          return [...prev, operator];
+        });
     }
   };
   return (
